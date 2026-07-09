@@ -1,16 +1,22 @@
-const text=`Dear Apurva ❤️
+```javascript
+const text = `Dear Apurva ❤️
 
 Happy Birthday To The Most Beautiful Girl.
 
-You are the reason behind countless smiles.
+On this beautiful day, I just want to say...
 
-May your life always be filled with happiness,
-love,
+You are truly special.
+
+May your smile always shine brighter than the stars ✨
+
+May every dream you see become reality.
+
+May happiness always stay with you.
+
+May God bless you with endless love,
+good health,
 success,
-peace,
-and endless beautiful memories.
-
-I wish every dream of yours comes true.
+and beautiful memories.
 
 Keep Smiling 😊
 
@@ -22,86 +28,101 @@ Once Again...
 
 🎂 Happy Birthday Apurva 🎂
 
-Made With ❤️ Just For You`;
+Made With Endless Love ❤️`;
 
 function openGift(){
 
 document.getElementById("gift").classList.add("hide");
+
 document.getElementById("content").classList.remove("hide");
 
+let music=document.getElementById("music");
+
+music.play().catch(()=>{});
+
 let i=0;
+
 let box=document.getElementById("msg");
 
-let t=setInterval(()=>{
+let typing=setInterval(()=>{
 
-box.innerHTML=text.slice(0,++i).replace(/\n/g,"<br>");
+box.innerHTML=text.substring(0,++i).replace(/\n/g,"<br>");
 
-if(i>=text.length)
-clearInterval(t);
+if(i>=text.length){
 
-},30);
+clearInterval(typing);
 
-createHearts();
-
-confetti();
 }
 
-function createHearts(){
+},35);
 
-setInterval(()=>{
+confetti();
+
+}
+
+setInterval(createHeart,250);
+
+function createHeart(){
 
 let heart=document.createElement("div");
 
 heart.className="heart";
 
-heart.innerHTML="❤️";
+heart.innerHTML=["❤️","💖","💕","💗"][Math.floor(Math.random()*4)];
 
 heart.style.left=Math.random()*100+"vw";
 
-heart.style.fontSize=(20+Math.random()*25)+"px";
+heart.style.fontSize=(20+Math.random()*35)+"px";
 
 heart.style.animationDuration=(4+Math.random()*4)+"s";
 
 document.body.appendChild(heart);
 
-setTimeout(()=>heart.remove(),7000);
+setTimeout(()=>{
 
-},300);
+heart.remove();
+
+},8000);
 
 }
 
 function confetti(){
 
-for(let i=0;i<120;i++){
+for(let i=0;i<180;i++){
 
-let c=document.createElement("div");
+let piece=document.createElement("div");
 
-c.style.position="absolute";
+piece.style.position="absolute";
 
-c.style.width="8px";
+piece.style.width="8px";
 
-c.style.height="8px";
+piece.style.height="8px";
 
-c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+piece.style.left=Math.random()*100+"vw";
 
-c.style.left=Math.random()*100+"vw";
+piece.style.top="-20px";
 
-c.style.top="-10px";
+piece.style.borderRadius="50%";
 
-c.style.borderRadius="50%";
+piece.style.background=`hsl(${Math.random()*360},100%,50%)`;
 
-c.style.transition="4s linear";
+piece.style.transition=(3+Math.random()*2)+"s linear";
 
-document.body.appendChild(c);
+document.body.appendChild(piece);
 
 setTimeout(()=>{
 
-c.style.transform=`translateY(${window.innerHeight+50}px) rotate(720deg)`;
+piece.style.transform=`translateY(${window.innerHeight+100}px) rotate(720deg)`;
 
 },50);
 
-setTimeout(()=>c.remove(),4500);
+setTimeout(()=>{
+
+piece.remove();
+
+},6000);
 
 }
 
 }
+```
